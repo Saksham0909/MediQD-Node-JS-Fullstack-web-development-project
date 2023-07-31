@@ -9,6 +9,10 @@ select * from users1;
 delete from users1;
 
 
+# ---------------------------------------------------- Admin account for managing website through admin panel ----------------------------------------------------
+insert into users1 values("admin0000@gmail.com", "adminlogin", "admin", current_date(), 1);
+
+
 # ---------------------------------------------------- Creating table to store donor profile data ----------------------------------------------------
 create table donors(email varchar(100) primary key, name varchar(30), mobile varchar(12), address varchar(100),city varchar(20), proof varchar(20), pic varchar(200), ahours varchar(20));
 select * from donors;
