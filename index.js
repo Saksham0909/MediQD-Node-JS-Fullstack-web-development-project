@@ -5,11 +5,13 @@ var nodemailer = require("nodemailer");
 var mysql = require("mysql2");
 var app = express();
 
+
 // ------------------------------------------------ Port configuration ------------------------------------------------
 var PORT = 3000;
 app.listen(PORT, function () {
   console.log(`Server started at port:- ${PORT}`);
 });
+
 
 // ------------------------------------------------ Dependencies configuration ------------------------------------------------
 app.use(express.static("public"));
@@ -40,6 +42,8 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+
+// ------------------------------------------------ Index page API's started ------------------------------------------------
 // ------------------------------------------------ Signup email check function ------------------------------------------------
 app.get("/signup-chk-email", function (req, resp) {
   var email = req.query.emailentered;
@@ -125,6 +129,10 @@ app.get("/dologin", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Index page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Donor profile page API's started ------------------------------------------------
 // ------------------------------------------------ Do donor profile search function ------------------------------------------------
 app.get("/profile-donor-search", function (req, resp) {
   var email = req.query.emailentered;
@@ -192,6 +200,10 @@ app.post("/profile-donor-update", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Donor profile page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Avail medicines page API's started ------------------------------------------------
 // ------------------------------------------------ Donor do avail function ------------------------------------------------
 app.get("/doavail", function (req, resp) {
   var email = req.query.emailsent;
@@ -208,6 +220,10 @@ app.get("/doavail", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Avail medicines page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Donor dashboard page API's started ------------------------------------------------
 // ------------------------------------------------ Change password function ------------------------------------------------
 app.get("/changepassword", function (req, resp) {
   var email = req.query.emailsent;
@@ -233,6 +249,10 @@ app.get("/changepassword", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Donor dashboard page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Needy profile page API's started ------------------------------------------------
 // ------------------------------------------------ Needy check data function ------------------------------------------------
 app.get("/check-data", function (req, resp) {
   var email = req.query.emailsent;
@@ -316,6 +336,10 @@ app.post("/profile-needy-update", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Needy profile page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Admin users panel page API's started ------------------------------------------------
 // ------------------------------------------------ Fetching users data function ------------------------------------------------
 app.get("/fetch-users-data", function (req, resp) {
   dbCon.query("select * from users1", function (err, result) {
@@ -363,6 +387,10 @@ app.get("/resume-users-data", function (req, resp) {
     });
 });
 
+// ------------------------------------------------ Admin users panel page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Admin donors panel page API's started ------------------------------------------------
 // ------------------------------------------------ Fetching donors data function ------------------------------------------------
 app.get("/fetch-donors-data", function (req, resp) {
   dbCon.query("select * from donors", function (err, result) {
@@ -374,6 +402,10 @@ app.get("/fetch-donors-data", function (req, resp) {
   });
 });
 
+// ------------------------------------------------ Admin donors panel page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Admin needy panel page API's started ------------------------------------------------
 // ------------------------------------------------ Fetching needy data function ------------------------------------------------
 app.get("/fetch-needy-data", function (req, resp) {
   dbCon.query("select * from needy", function (err, result) {
@@ -385,6 +417,10 @@ app.get("/fetch-needy-data", function (req, resp) {
   });
 });
 
+// ------------------------------------------------ Admin needy panel page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Expired medicine page API's started ------------------------------------------------
 // ------------------------------------------------ Removing expired medicines function ------------------------------------------------
 app.get("/remove-expired-meds", function (req, resp) {
   dbCon.query("delete from medsavailable where expdate < current_date()", function (err, result) {
@@ -396,6 +432,10 @@ app.get("/remove-expired-meds", function (req, resp) {
   });
 });
 
+// ------------------------------------------------ Expired medicine page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Medicine manager page API's started ------------------------------------------------
 // ------------------------------------------------ Fetching medicines function ------------------------------------------------
 app.get("/fetch-medicine", function (req, resp) {
   var email = req.query.email;
@@ -420,7 +460,11 @@ app.get("/unavail-medicine", function (req, resp) {
     });
 });
 
-// ------------------------------------------------ Fetching medicines function ------------------------------------------------
+// ------------------------------------------------ Medicine manager page API's ended ------------------------------------------------
+
+
+// ------------------------------------------------ Medicine finder page API's started ------------------------------------------------
+// ------------------------------------------------ Fetching cities function ------------------------------------------------
 app.get("/fetch-cities", function (req, resp) {
   dbCon.query("select distinct city from donors", function (err, result) {
     if (err == null) {
@@ -455,3 +499,5 @@ app.get("/fetch-donors",function(req,resp){
     }
   });
 });
+
+// ------------------------------------------------ Medicine finder page API's ended ------------------------------------------------
