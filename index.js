@@ -37,8 +37,8 @@ dbCon.connect(function (err) {
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "arora.saksham.k@gmail.com",
-    pass: "zvhwbcctnsnmayxu",
+    user: "sakshamkumar98766@gmail.com",
+    pass: "ipghdugaolcwstdb",
   }
 });
 
@@ -67,7 +67,7 @@ app.get("/dosignup", function (req, resp) {
   var type = req.query.typeentered;
 
   var mailOptions = {
-    from: "arora.saksham.k@gmail.com",
+    from: "sakshamkumar98766@gmail.com",
     to: email,
     subject: "Account has been created on MEDIQD.com",
     text: `Welcome ${email}, you have been successfully registed as a ${type} on our website. If not please just ignore this mail. With regards from MediQD`
@@ -95,7 +95,7 @@ app.get("/dologin", function (req, resp) {
   var pwd = req.query.pwdentered;
 
   var mailOptions = {
-    from: "arora.saksham.k@gmail.com",
+    from: "sakshamkumar98766@gmail.com",
     to: email,
     subject: "Account login on MEDIQD.com",
     text: `Your email:- ${email} has been used to login on our website. If not please please check your account activity and if possible change your account password to something secure. With regards from MediQD`
